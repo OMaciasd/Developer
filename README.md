@@ -1,3 +1,6 @@
-Chess "X" and "_"
+# Python Challenges
 
-Challenges of Evalart for jobs overDevOps Engineer!
+## Succesfull
+
+- Draw a X from nine to fiveteen scuares.
+- Evaluate symmetry or not, beetween two values.
