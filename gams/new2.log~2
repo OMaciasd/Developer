@@ -1,0 +1,30 @@
+
+--- Job new2.gms Start 03/01/24 13:00:39 46.1.0 0f6c6ca6 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\46\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\LENOVO\Desktop\new2.gms
+    PageSize 0
+    ScrDir C:\Users\LENOVO\Desktop\225a\
+    SysDir C:\GAMS\46\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: GAMS Demo, for EULA and demo limitations see   G240131/0001CB-GEN
+          https://www.gams.com/latest/docs/UG%5FLicense.html         DC0000
+          C:\GAMS\46\gamslice.txt
+          Demo license for demonstration and instructional purposes only
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 46.1.0   Copyright (C) 1987-2024 GAMS Development. All rights reserved
+--- Starting compilation
+--- new2.gms(25) 3 Mb 1 Error
+*** Error 140 in C:\Users\LENOVO\Desktop\new2.gms
+    Unknown symbol
+--- new2.gms(35) 3 Mb 2 Errors
+*** Error 257 in C:\Users\LENOVO\Desktop\new2.gms
+    Solve statement not checked because of previous errors
+--- new2.gms(35) 3 Mb 2 Errors
+*** Status: Compilation error(s)
+--- Job new2.gms Stop 03/01/24 13:00:39 elapsed 0:00:00.008

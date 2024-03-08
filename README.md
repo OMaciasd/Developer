@@ -1,6 +1,4 @@
-# Python Challenges
+# Developer projects
 
-## Succesfull
-
-- Draw a X from nine to fiveteen scuares.
-- Evaluate symmetry or not, beetween two values.
+- Python.
+- GAMS (Programacion Lineal).

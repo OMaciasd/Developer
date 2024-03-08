@@ -1,0 +1,228 @@
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 12:43:30 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  Sets
+   2      i /anillos, aretes, collares/;
+   3   
+   4  Parameters
+   5      ganancias(i) /anillos 1500, aretes 2400, collares 3600/,
+   6      diamantecaratl(i) /anillos 4, aretes 3, collares 10/,
+   7      diamantecarat2(i) /anillos 6, aretes 5, collares 9/;
+   8   
+   9  Scalar diamantel /150/,
+  10         diamante2 /160/,
+  11         numerod /50/,
+  12         numerom /100/;
+  13   
+  14  Variables
+  15      X(i)   cantidad de joyas tipo i a producir
+  16      Z      ganancias estimadas por la producción de joyas;
+  17   
+  18  Equations
+  19      Fobj    funcion objetivo
+  20      R1      restriccion diamante un medio
+  21      R2      restriccion diamante un cuarto
+  22      R3      restriccion gerencia
+  23      R4      límite máximo de joyas a producir
+  24      R5      límite de diamantes;
+  25   
+  26  Fobj..    Z =e= sum(i, ganancias(i) * X(i));
+  27   
+  28  R1.. sum(i, diamantecaratl(i) * X(i)) =l= diamantel;
+  29   
+  30  R2.. sum(i, diamantecarat2(i) * X(i)) =l= diamante2;
+  31   
+  32  R3.. sum(i, X(i)) =l= numerod;
+  33   
+  34  R4.. sum(i, X(i)) =l= numerom;
+  35   
+  36  * Restricción adicional para limitar el número total de diamantes utilizados
+  37  R5.. sum(i, diamantecaratl(i) * X(i) + diamantecarat2(i) * X(i)) =l= diamantel + diamante2;
+  38   
+  39  * Resuelve el modelo
+  40  Model joyas /all/;
+  41  Solve joyas using MIP maximizing Z;
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  46.1.0 0f6c6ca6 WEX-WEI
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 12:43:30 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE joyas Using MIP From line 41
+
+
+---- Fobj  =E=  funcion objetivo
+
+Fobj..  - 1500*X(anillos) - 2400*X(aretes) - 3600*X(collares) + Z =E= 0 ; (LHS = 0)
+     
+
+---- R1  =L=  restriccion diamante un medio
+
+R1..  4*X(anillos) + 3*X(aretes) + 10*X(collares) =L= 150 ; (LHS = 0)
+     
+
+---- R2  =L=  restriccion diamante un cuarto
+
+R2..  6*X(anillos) + 5*X(aretes) + 9*X(collares) =L= 160 ; (LHS = 0)
+     
+
+---- R3  =L=  restriccion gerencia
+
+R3..  X(anillos) + X(aretes) + X(collares) =L= 50 ; (LHS = 0)
+     
+
+---- R4  =L=  límite máximo de joyas a producir
+
+R4..  X(anillos) + X(aretes) + X(collares) =L= 100 ; (LHS = 0)
+     
+
+---- R5  =L=  límite de diamantes
+
+R5..  10*X(anillos) + 8*X(aretes) + 19*X(collares) =L= 310 ; (LHS = 0)
+     
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 12:43:30 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE joyas Using MIP From line 41
+
+
+---- X  cantidad de joyas tipo i a producir
+
+X(anillos)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+    -1500       Fobj
+        4       R1
+        6       R2
+        1       R3
+        1       R4
+       10       R5
+
+X(aretes)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+    -2400       Fobj
+        3       R1
+        5       R2
+        1       R3
+        1       R4
+        8       R5
+
+X(collares)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+    -3600       Fobj
+       10       R1
+        9       R2
+        1       R3
+        1       R4
+       19       R5
+
+
+---- Z  ganancias estimadas por la producción de joyas
+
+Z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       Fobj
+
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 12:43:30 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Range Statistics    SOLVE joyas Using MIP From line 41
+
+
+RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
+
+RHS       [min, max] : [ 5.000E+01, 3.100E+02] - Zero values observed as well
+Bound     [min, max] : [        NA,        NA]
+Matrix    [min, max] : [ 1.000E+00, 3.600E+03]
+
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 12:43:30 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE joyas Using MIP From line 41
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           6     SINGLE EQUATIONS            6
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES            4
+NON ZERO ELEMENTS            19
+
+
+GENERATION TIME      =        0.109 SECONDS      4 MB  46.1.0 0f6c6ca6 WEX-WEI
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 12:43:30 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE joyas Using MIP From line 41
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   joyas               OBJECTIVE  Z
+     TYPE    MIP                 DIRECTION  MAXIMIZE
+     SOLVER  CPLEX               FROM LINE  41
+
+**** SOLVER STATUS     1 Normal Completion
+**** MODEL STATUS      3 Unbounded
+**** OBJECTIVE VALUE             1071.4286
+
+ RESOURCE USAGE, LIMIT          0.000 10000000000.000
+ ITERATION COUNT, LIMIT         2    2147483647
+*** This solver runs with a demo license. No commercial use.
+--- GMO setup time: 0.00s
+--- GMO memory 0.50 Mb (peak 0.50 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.1.0 link memory 0.00 Mb (peak 0.00 Mb)
+--- Starting Cplex
+
+
+--- LP status (2): unbounded.
+--- Cplex Time: 0.00sec (det. 0.01 ticks)
+
+
+Model has an unbounded ray
+--- Could not determine which row or columns may have causedthe problem to be unbounded
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU Fobj                .              .              .             1.0000      
+---- EQU R1                -INF          150.0000       150.0000      -171.4286  NOPT
+---- EQU R2                -INF          159.5714       160.0000          .          
+---- EQU R3                -INF           50.0000        50.0000     -1885.7143  NOPT
+---- EQU R4                -INF          100.0000       100.0000          .          
+---- EQU R5                -INF          309.5714       310.0000          .          
+
+  Fobj  funcion objetivo
+  R1  restriccion diamante un medio
+  R2  restriccion diamante un cuarto
+  R3  restriccion gerencia
+  R4  límite máximo de joyas a producir
+  R5  límite de diamantes
+
+---- VAR X  cantidad de joyas tipo i a producir
+
+                LOWER          LEVEL          UPPER         MARGINAL
+
+anillos         -INF             .            +INF         1071.4286      
+aretes          -INF            0.8571        +INF             .          
+collares        -INF            0.1429        +INF             .          
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR Z                 -INF         1071.4286        +INF             .          
+
+  Z  ganancias estimadas por la producción de joyas
+
+
+**** REPORT SUMMARY :        2     NONOPT ( NOPT)
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+
+
+EXECUTION TIME       =        1.391 SECONDS      4 MB  46.1.0 0f6c6ca6 WEX-WEI
+
+
+USER: GAMS Demo, for EULA and demo limitations see   G240131/0001CB-GEN
+      https://www.gams.com/latest/docs/UG%5FLicense.html         DC0000
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\LENOVO\Desktop\new1.gms
+Output     C:\Users\LENOVO\Desktop\new1.lst

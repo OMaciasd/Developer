@@ -1,0 +1,20 @@
+B 3 C o m p i l a t i o n
+B 48 Equation Listing    SOLVE compra_aviones Using MIP From line 37
+D 51 Fobj
+D 56 inversion_total
+D 61 cantidad_aviones
+D 66 cantidad_pilotos
+D 71 cantidad_instalaciones
+B 77 Column Listing      SOLVE compra_aviones Using MIP From line 37
+E 80 x
+E 104 Z
+B 112 Range Statistics    SOLVE compra_aviones Using MIP From line 37
+B 123 Model Statistics    SOLVE compra_aviones Using MIP From line 37
+B 136 Solution Report     SOLVE compra_aviones Using MIP From line 37
+F 169 Fobj
+F 170 inversion_total
+F 171 cantidad_aviones
+F 172 cantidad_pilotos
+F 173 cantidad_instalaciones
+G 175 x
+G 185 Z

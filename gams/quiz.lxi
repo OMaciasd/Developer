@@ -1,0 +1,18 @@
+B 3 C o m p i l a t i o n
+B 50 Equation Listing    SOLVE ProduccionPortatiles Using MIP From line 39
+D 53 CapacidadTotalManana
+D 58 CapacidadTotalTarde
+D 63 UnaVezAlDia
+D 72 FuncionObjetivo
+B 78 Column Listing      SOLVE ProduccionPortatiles Using MIP From line 39
+E 81 x
+E 103 Z
+B 111 Range Statistics    SOLVE ProduccionPortatiles Using MIP From line 39
+B 122 Model Statistics    SOLVE ProduccionPortatiles Using MIP From line 39
+B 135 Solution Report     SOLVE ProduccionPortatiles Using MIP From line 39
+F 168 CapacidadTotalManana
+F 169 CapacidadTotalTarde
+F 171 UnaVezAlDia
+F 181 FuncionObjetivo
+G 183 x
+G 196 Z
