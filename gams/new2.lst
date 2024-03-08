@@ -1,0 +1,203 @@
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 13:05:21 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  Sets
+   2      planes /largo, mediano, corto/;
+   3   
+   4  Parameters
+   5      precio(planes) /largo 67, mediano 50, corto 35/,
+   6      ganancia_neta(planes) /largo 4.2, mediano 3, corto 2.3/;
+   7   
+   8  Scalar
+   9      limite_inversion /1.5e9/,
+  10      limite_pilotos /2/,
+  11      limite_instalaciones /40/,
+  12      cantidad_maxima_aviones /30/;
+  13   
+  14  Variables
+  15      x(planes)  cantidad de aviones de cada tipo
+  16      Z;
+  17   
+  18  Positive Variables x;
+  19   
+  20  Equations
+  21      Fobj,
+  22      inversion_total,
+  23      cantidad_aviones,
+  24      cantidad_pilotos,
+  25      cantidad_instalaciones;
+  26   
+  27  Fobj..    Z =e= sum(planes, ganancia_neta(planes) * x(planes));
+  28  inversion_total.. sum(planes, precio(planes) * x(planes)) =l= limite_inversion;
+  29   
+  30  cantidad_aviones.. sum(planes, x(planes)) =l= cantidad_maxima_aviones;
+  31   
+  32  cantidad_pilotos.. x('corto') =l= limite_pilotos;
+  33   
+  34  cantidad_instalaciones.. x('mediano') + 5/3 * x('largo') =l= limite_instalaciones;
+  35   
+  36  Model compra_aviones /all/;
+  37  Solve compra_aviones using mip maximizing Z;
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  46.1.0 0f6c6ca6 WEX-WEI
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 13:05:21 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE compra_aviones Using MIP From line 37
+
+
+---- Fobj  =E=  
+
+Fobj..  - 4.2*x(largo) - 3*x(mediano) - 2.3*x(corto) + Z =E= 0 ; (LHS = 0)
+     
+
+---- inversion_total  =L=  
+
+inversion_total..  67*x(largo) + 50*x(mediano) + 35*x(corto) =L= 1500000000 ; (LHS = 0)
+     
+
+---- cantidad_aviones  =L=  
+
+cantidad_aviones..  x(largo) + x(mediano) + x(corto) =L= 30 ; (LHS = 0)
+     
+
+---- cantidad_pilotos  =L=  
+
+cantidad_pilotos..  x(corto) =L= 2 ; (LHS = 0)
+     
+
+---- cantidad_instalaciones  =L=  
+
+cantidad_instalaciones..  1.66666666666667*x(largo) + x(mediano) =L= 40 ; (LHS = 0)
+     
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 13:05:21 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE compra_aviones Using MIP From line 37
+
+
+---- x  cantidad de aviones de cada tipo
+
+x(largo)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -4.2     Fobj
+       67       inversion_total
+        1       cantidad_aviones
+        1.6667  cantidad_instalaciones
+
+x(mediano)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -3       Fobj
+       50       inversion_total
+        1       cantidad_aviones
+        1       cantidad_instalaciones
+
+x(corto)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -2.3     Fobj
+       35       inversion_total
+        1       cantidad_aviones
+        1       cantidad_pilotos
+
+
+---- Z  
+
+Z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       Fobj
+
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 13:05:21 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Range Statistics    SOLVE compra_aviones Using MIP From line 37
+
+
+RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
+
+RHS       [min, max] : [ 2.000E+00, 1.500E+09] - Zero values observed as well
+Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+Matrix    [min, max] : [ 1.000E+00, 6.700E+01]
+
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 13:05:21 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE compra_aviones Using MIP From line 37
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           5     SINGLE EQUATIONS            5
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES            4
+NON ZERO ELEMENTS            13
+
+
+GENERATION TIME      =        0.016 SECONDS      4 MB  46.1.0 0f6c6ca6 WEX-WEI
+GAMS 46.1.0  0f6c6ca6 Feb 17, 2024          WEX-WEI x86 64bit/MS Windows - 03/01/24 13:05:21 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE compra_aviones Using MIP From line 37
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   compra_aviones      OBJECTIVE  Z
+     TYPE    MIP                 DIRECTION  MAXIMIZE
+     SOLVER  CPLEX               FROM LINE  37
+
+**** SOLVER STATUS     1 Normal Completion
+**** MODEL STATUS      1 Optimal
+**** OBJECTIVE VALUE              110.2000
+
+ RESOURCE USAGE, LIMIT          0.000 10000000000.000
+ ITERATION COUNT, LIMIT         2    2147483647
+*** This solver runs with a demo license. No commercial use.
+--- GMO setup time: 0.00s
+--- GMO memory 0.50 Mb (peak 0.50 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.1.0 link memory 0.00 Mb (peak 0.00 Mb)
+--- Starting Cplex
+
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 0.01 ticks)
+
+
+Optimal solution found
+Objective:          110.200000
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU Fobj                .              .              .             1.0000      
+---- EQU inversion~        -INF         1776.0000   1.5000000E+9          .          
+---- EQU cantidad_~        -INF           30.0000        30.0000         1.2000      
+---- EQU cantidad_~        -INF            2.0000         2.0000         1.1000      
+---- EQU cantidad_~        -INF           40.0000        40.0000         1.8000      
+
+---- VAR x  cantidad de aviones de cada tipo
+
+               LOWER          LEVEL          UPPER         MARGINAL
+
+largo            .            18.0000        +INF             .          
+mediano          .            10.0000        +INF             .          
+corto            .             2.0000        +INF             .          
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR Z                 -INF          110.2000        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+
+
+EXECUTION TIME       =        0.078 SECONDS      4 MB  46.1.0 0f6c6ca6 WEX-WEI
+
+
+USER: GAMS Demo, for EULA and demo limitations see   G240131/0001CB-GEN
+      https://www.gams.com/latest/docs/UG%5FLicense.html         DC0000
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\LENOVO\Desktop\new2.gms
+Output     C:\Users\LENOVO\Desktop\new2.lst

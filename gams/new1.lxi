@@ -1,0 +1,22 @@
+B 3 C o m p i l a t i o n
+B 52 Equation Listing    SOLVE joyas Using MIP From line 41
+D 55 Fobj
+D 60 R1
+D 65 R2
+D 70 R3
+D 75 R4
+D 80 R5
+B 86 Column Listing      SOLVE joyas Using MIP From line 41
+E 89 X
+E 119 Z
+B 127 Range Statistics    SOLVE joyas Using MIP From line 41
+B 138 Model Statistics    SOLVE joyas Using MIP From line 41
+B 151 Solution Report     SOLVE joyas Using MIP From line 41
+F 184 Fobj
+F 185 R1
+F 186 R2
+F 187 R3
+F 188 R4
+F 189 R5
+G 198 X
+G 208 Z
